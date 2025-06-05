@@ -1,0 +1,207 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans&family=VT323&display=swap');
+
+:root {
+    --accent-color: #78F202;
+    --bg-color: #1f1e25;
+    --bg-color-lighter: #2b2a33;
+    --text-color: #E5E5E5; /* soft white */
+    --text-muted: #B0B0B0; /* softer gray */
+    --font-large-heading: 'Bebas Neue', sans-serif;
+    --font-general: 'DM Sans', sans-serif;
+    --font-special: 'VT323', monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-general);
+    line-height: 1.7;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    color: var(--text-color);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+section {
+    padding: 4rem 0;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+    section:last-child {
+        border-bottom: none;
+    }
+
+/* Headings */
+
+h1 {
+    font-family: var(--font-large-heading);
+    font-weight: normal;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--font-general);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+/* Paragraphs */
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Links */
+
+a {
+    position: relative;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+    a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -3px;
+        left: 0;
+        background-color: var(--accent-color);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: bottom right;
+    }
+
+    a:hover,
+    a:focus {
+        color: #A4F535;
+        outline: none;
+    }
+
+        a:hover::after,
+        a:focus::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+/* Buttons */
+
+button {
+    margin-top: 1.5rem;
+    background-color: var(--accent-color);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-family: var(--font-general);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--bg-color);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover,
+    button:focus {
+        background-color: #A4F535;
+        outline: none;
+    }
+
+/* Code, Pre, Blockquote */
+
+code,
+pre,
+blockquote {
+    font-family: var(--font-special);
+    color: var(--accent-color);
+}
+
+pre {
+    background-color: #2A2341;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin: 1rem 0;
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Utility classes */
+
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* Responsive typography */
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p,
+    button {
+        font-size: 1rem;
+    }
+}
+
+.navbar-brand {
+    font-family: var(--font-large-heading);
+    font-weight: normal;
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--accent-color);
+}
+
+    .navbar-brand:focus, .navbar-brand:hover {
+        color: rgb(255 255 255);
+    }
+
+
