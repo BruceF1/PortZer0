@@ -135,6 +135,37 @@ a {
 
 /* Buttons */
 
+a.btn-outline-neon {
+    color: #A4F535;
+    border: 1px solid #A4F535;
+    background-color: transparent;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+    a.btn-outline-neon:hover,
+    a.btn-outline-neon:focus {
+        background-color: #A4F535;
+        color: #000;
+        text-decoration: none;
+    }
+
+.btn-outline-neon {
+    color: #A4F535;
+    border: 1px solid #A4F535;
+    background-color: transparent;
+}
+
+    .btn-outline-neon:hover {
+        background-color: #A4F535;
+        color: #000; /* or white, depending on your theme */
+    }
 
 button {
     margin-top: 1.5rem;

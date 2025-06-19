@@ -6,8 +6,7 @@ using PortZer0.Models;
 namespace PortZer0.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class BlogPostsController : ControllerBase
+    public class BlogPostsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -57,8 +56,9 @@ namespace PortZer0.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBlogPost(int id)
+        [HttpPost("/BlogPosts/Delete/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
             var blogPost = await _context.BlogPost.FindAsync(id);
             if (blogPost == null)
@@ -67,7 +67,63 @@ namespace PortZer0.Controllers
             _context.BlogPost.Remove(blogPost);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return RedirectToAction("Manage");
         }
+
+        [HttpGet("/BlogPosts/Manage")]
+        public async Task<IActionResult> Manage()
+        {
+            var posts = await _context.BlogPost.ToListAsync();
+            return View(posts);
+        }
+
+        [HttpPost("/BlogPosts/Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Title,Content")] BlogPost blogPost)
+        {
+            if (!ModelState.IsValid) return View(blogPost); // Add this for debugging/feedback
+
+            _context.BlogPost.Add(blogPost);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Manage");
+        }
+
+        [HttpGet("/BlogPosts/Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var blogPost = await _context.BlogPost.FindAsync(id);
+            if (blogPost == null)
+                return NotFound();
+
+            return View(blogPost);
+        }
+
+        [HttpPost("/BlogPosts/Edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content")] BlogPost blogPost)
+        {
+            if (id != blogPost.Id)
+                return BadRequest();
+
+            if (!ModelState.IsValid)
+                return View(blogPost);
+
+            try
+            {
+                _context.Update(blogPost);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.BlogPost.Any(e => e.Id == id))
+                    return NotFound();
+                else
+                    throw;
+            }
+
+            return RedirectToAction("Manage");
+        }
+
+
     }
 }
