@@ -18,6 +18,22 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1 0 auto; /* allows container to grow and take available space */
+}
+
 body {
     margin: 0;
     background-color: var(--bg-color);
@@ -34,6 +50,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    padding-bottom: 60px; /* space for footer */
 }
 
 section {
@@ -44,6 +61,18 @@ section {
     section:last-child {
         border-bottom: none;
     }
+
+footer.footer {
+    position: fixed !important;
+    color: white !important;
+    background-color: var(--bg-color);
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+    z-index: 1000;
+    bottom: 0;
+}
 
 /* Headings */
 

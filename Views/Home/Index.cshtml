@@ -1,24 +1,22 @@
 ﻿@model IEnumerable<PortZer0.Models.BlogPost>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <div>
-    <h2 class="display-4">▪[x x]▪</h2>
-    <p>PortZerø</p>
-
-    <h3>Read:</h3>
+    <h5>ReadMe:</h5>
 
     @if (Model != null && Model.Any())
     {
         <ol>
             @foreach (var post in Model)
             {
-                <li class="h5">
+                <li >
                     <div>
-                        <div>@post.Title</div>
-                        <p>Description</p>
+                        <a asp-controller="BlogPosts" asp-action="View" asp-route-id="@post.Id">
+                            @post.Title
+                        </a>
                     </div>
                 </li>
             }
@@ -26,11 +24,8 @@
     }
     else
     {
-        <p>No posts yet. Stay tuned.</p>
+        <p>No posts yet.</p>
     }
-
-    <p>> No entry. No leaks.</p>
-    <p>Access denied since day Ø</p>
-    <p>Instagram: <a href="https://instagram.com" target="_blank">Click here</a></p>
-    <p>Mastodon: <a href="https://mastodon.social" target="_blank">Click here</a></p>
+@*     <p>Instagram: <a href="https://instagram.com" target="_blank">Click here</a></p>
+    <p>Mastodon: <a href="https://mastodon.social" target="_blank">Click here</a></p> *@
 </div>

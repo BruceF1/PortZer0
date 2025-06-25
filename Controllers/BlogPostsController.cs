@@ -88,6 +88,13 @@ namespace PortZer0.Controllers
             return RedirectToAction("Manage");
         }
 
+        [HttpGet("/BlogPosts/Create")]
+        public IActionResult Create()
+        {
+            return View(new BlogPost());
+        }
+
+
         [HttpGet("/BlogPosts/Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -122,6 +129,16 @@ namespace PortZer0.Controllers
             }
 
             return RedirectToAction("Manage");
+        }
+
+        [HttpGet("/BlogPosts/View/{id}")]
+        public async Task<IActionResult> View(int id)
+        {
+            var blogPost = await _context.BlogPost.FindAsync(id);
+            if (blogPost == null)
+                return NotFound();
+
+            return View(blogPost);
         }
 
 

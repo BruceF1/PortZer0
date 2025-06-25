@@ -2,6 +2,8 @@
 
 <div class="container">
     <h2 class="display-4">Posts</h2>
+
+    <a asp-action="Create" class="btn btn-outline-neon btn-sm mb-3">Create new post</a>
     <!-- Fixed headings -->
     <div class="row fw-bold border-bottom py-2">
         <div class="col">Title</div>
@@ -20,7 +22,6 @@
                     @Html.AntiForgeryToken()
                     <button class="btn btn-outline-neon btn-sm mb-4" type="submit">Delete</button>
                 </form>
-
             </div>
         </div>
     }

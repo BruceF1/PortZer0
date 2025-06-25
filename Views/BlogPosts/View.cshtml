@@ -1,0 +1,9 @@
+﻿@model PortZer0.Models.BlogPost
+
+<div class="container mt-4">
+    <h1>@Model.Title</h1>
+    <div class="mt-3">
+        @Html.Raw(Model.Content)
+    </div>
+    <a asp-action="Index" class="btn btn-outline-neon btn-sm mb-4">Back</a>
+</div>

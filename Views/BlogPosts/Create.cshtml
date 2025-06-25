@@ -1,0 +1,34 @@
+﻿@model PortZer0.Models.BlogPost
+
+<form method="post" asp-controller="BlogPosts" asp-action="Create" asp-route-id="@Model.Id" onsubmit="syncEditorContent()">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <input type="text" asp-for="Title" class="form-control mb-3" />
+
+    <!-- Hidden input to submit the content -->
+    <input type="hidden" id="Content" name="Content" value="@Html.Raw(Model.Content)" />
+
+    <!-- Quill editor container -->
+    <div id="contentEditor" style="height: 200px;">
+        @Html.Raw(Model.Content)
+    </div>
+
+    <button type="submit" class="btn btn-outline-neon btn-sm mb-4">Save</button>
+</form>
+
+<!-- Quill CSS and JS -->
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" />
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+
+<script>
+    var quill = new Quill('#contentEditor', {
+        theme: 'snow'
+    });
+
+    // Function to sync Quill content into the hidden input before submit
+    function syncEditorContent() {
+        var content = document.querySelector('input#Content');
+        content.value = quill.root.innerHTML;
+    }
+</script>
